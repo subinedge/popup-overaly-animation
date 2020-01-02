@@ -1,0 +1,238 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #3e4146;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.button button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: inherit;
+  background-color: #ffffff;
+  border: 0;
+  padding: 15px 25px;
+  color: #000000;
+  text-transform: uppercase;
+  font-size: 21px;
+  letter-spacing: 1px;
+  width: 200px;
+  overflow: hidden;
+  outline: 0;
+  transition: all 0.4s;
+  visibility: visible;
+  opacity: 1;
+  font-weight: bold;
+  box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.6);
+}
+
+
+.button button:hover {
+  cursor: pointer;
+  background-color: #8e6ac1;
+  color: #fff;
+}
+
+.button button span {
+  opacity: 1;
+}
+
+.button.clicked button {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* pop up css */
+
+.pop-up {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  overflow-y: hidden;
+  box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.4);
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s;
+  z-index: 10;
+  background-color: #ffffff;
+  width: 80%;
+  height: 80%;
+}
+
+.pop-up .content {
+  width: 100%;
+  max-width: 900px;
+  overflow: hidden;
+  text-align: center;
+  position: relative;
+  min-height: inherit;
+}
+
+.pop-up .content .container {
+  padding: 80px 20px 140px;
+}
+
+/* positioning the close button */
+
+.pop-up .content .container .close {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 1.1rem;
+  letter-spacing: 0.05rem;
+  color: #3e4146;
+  transition: all 0.4s;
+  font-weight: bolder;
+}
+
+.pop-up .content .container .close:hover {
+  cursor: pointer;
+  color: #ffffff;
+}
+
+/* now lets place the circle at the corners */
+
+.pop-up .content .dots .dot {
+  position: absolute;
+  border-radius: 100%;
+  /* dots z-index should be higher than overlay pop up... */
+  z-index: 11;
+}
+
+.pop-up .content .dots .dot:nth-of-type(1) {
+  top: 100px;
+  right: -100px;
+  width: 180px;
+  height: 180px;
+  background-color: #689bf6;
+  animation: float 6s ease-in-out infinite;
+}
+
+.pop-up .content .dots .dot:nth-of-type(2) {
+  top: -50px;
+  left: -50px;
+  width: 160px;
+  height: 160px;
+  z-index: -1;
+  background-color: #f66867;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* .pop-up .content .dots .dot:nth-of-type(3) {
+  bottom: -50px;
+  right: -50px;
+  width: 100px;
+  height: 100px;
+  background-color: #ffd84c;
+  animation: float 6s ease-in-out infinite;
+} */
+
+.pop-up .content .title h1 {
+  text-align: center;
+  color: #f66867;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 2rem;
+  letter-spacing: 0.05rem;
+}
+
+.pop-up .content img {
+  width: 100%;
+  max-width: 220px;
+  display: inline-block;
+  margin: 30px 0 40px 0;
+  opacity: 0;
+  transform: translateX(60px);
+  transition: 0.2s;
+}
+
+.pop-up .content .subscribe form {
+  overflow: hidden;
+}
+
+.pop-up .content .subscribe form input {
+  width: 100%;
+  float: left;
+  padding: 15px 20px;
+  text-align: center;
+  font-family: inherit;
+  font-size: 1.1rem;
+  letter-spacing: 0.05rem;
+  outline: 0;
+}
+
+.pop-up .content .subscribe form input[type=email] {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #bec1c5;
+  transition: all 0.4s;
+}
+
+.pop-up .content .subscribe form input[type=email]:focus {
+  border-color: #3e4146;
+}
+
+.pop-up .content .subscribe form input[type=submit] {
+  background-color: #8e6ac1;
+  color: #fff;
+  border: 1px solid #8e6ac1;
+  transition: all 0.5s;
+}
+
+.pop-up .content .subscribe form input[type=submit]:hover {
+  cursor: pointer;
+  background-color: #7349af;
+  border-color: #7349af;
+}
+
+/* add class open and toggle class close using JQuery */
+
+.pop-up.open {
+  visibility: visible;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* now to show image */
+.pop-up.open img {
+  opacity: 1;
+  transition: 1s;
+  transition-delay: 0.3s;
+  transform: translateX(0px);
+}
+
+/* lets animate the dots */
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+    transform: translateX(0px);
+  }
+
+  50% {
+    transform: translateY(-30px);
+    transform: translateX(20px);
+  }
+
+  100% {
+    transform: translateY(0px);
+    transform: translateX(0px);
+  }
+}
+
